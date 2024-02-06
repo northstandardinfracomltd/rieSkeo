@@ -1329,11 +1329,10 @@ En vous inscrivant au programme d'indexation en tant que fournisseur ou formateu
           </p>
     <!-- Bouton avec classe sponso et lien vers nouvel onglet -->
     
-    <div class="radio-container snipcss-YDHU2 lazyload">
+<div class="radio-container snipcss-YDHU2 lazyload">
   <label for="termsRadio" class="custom-radio">
-    <input type="radio" id="termsRadio" name="termsRadio">
-    <span class="radio-bullet">
-    </span>
+    <input type="radio" id="termsRadio" name="termsRadio" onchange="checkInscriptionButton()">
+    <span class="radio-bullet"></span>
   </label>
   <label for="termsRadio" class="radio-text">
     J'ai lu les
@@ -1344,8 +1343,34 @@ En vous inscrivant au programme d'indexation en tant que fournisseur ou formateu
     </span>
   </label>
 </div>
-    
-    <a href="/indexation/inscription"  class="btnsponso lazyload science">S'inscrire</a>
+
+<a href="/indexation/inscription" id="inscriptionButton" class="btnsponso lazyload science" onclick="return checkTerms()">S'inscrire</a>
+
+<script>
+  function checkInscriptionButton() {
+    var termsRadio = document.getElementById('termsRadio');
+    var inscriptionButton = document.getElementById('inscriptionButton');
+
+    if (termsRadio.checked) {
+      inscriptionButton.removeAttribute('disabled');
+    } else {
+      inscriptionButton.setAttribute('disabled', 'disabled');
+    }
+  }
+
+  function checkTerms() {
+    var termsRadio = document.getElementById('termsRadio');
+
+    if (!termsRadio.checked) {
+      alert("Vous devez accepter les conditions d'utilisation Risqueo afin de poursuivre.");
+      return false; // Empêche le lien de fonctionner
+    }
+
+    // Ajoutez d'autres validations ou actions ici si nécessaire
+    return true; // Permet au lien de fonctionner
+  }
+</script>
+
 <br>
   </div>
       
